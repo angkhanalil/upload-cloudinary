@@ -12,23 +12,22 @@ router.post("/", async (req, res) => {
     console.log(desc);
     console.log(price);
     // console.log(image);
-    res.status(200).json({ message: "d" });
     if (image) {
       const uploadRes = await cloudinary.uploader.upload(image, {
         upload_preset: "onlineshop",
       });
       console.log("uploadRes", uploadRes);
-      // if (uploadRes) {
-      //   const product = new Product({
-      //     name,
-      //     brand,
-      //     desc,
-      //     price,
-      //     image: uploadRes,
-      //   });
-      //   const saveProduct = await product.save();
-      res.status(200).json({ message: "success" });
-      // }
+      if (uploadRes) {
+        const product = new Product({
+          name,
+          brand,
+          desc,
+          price,
+          image: uploadRes,
+        });
+        const saveProduct = await product.save();
+        res.status(200).json(product);
+      }
     }
   } catch (error) {
     console.log(error);

@@ -25,17 +25,17 @@ app.post("/test", (req, res) => {
   res.status(200).json({ message: "test" });
 });
 
-const uri = process.env.DB_URI;
+const uri = process.env.DB_URL;
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}...`);
 });
 
-// mongoose
-//   .connect(uri, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("MongoDB connection established..."))
-//   .catch((error) => console.error("MongoDB connection failed:", error.message));
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connection established..."))
+  .catch((error) => console.error("MongoDB connection failed:", error.message));
