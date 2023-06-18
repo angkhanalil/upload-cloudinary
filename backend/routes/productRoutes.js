@@ -16,7 +16,6 @@ router.post("/", async (req, res) => {
       const uploadRes = await cloudinary.uploader.upload(image, {
         upload_preset: "onlineshop",
       });
-      console.log("uploadRes", uploadRes);
       if (uploadRes) {
         const product = new Product({
           name,
