@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Product = () => {
@@ -14,6 +14,14 @@ const Product = () => {
     price: price,
     image: image,
   });
+  useEffect(() => {
+    findProduct();
+  }, []);
+  const findProduct = (e) => {
+    axios.get("http://localhost:5000/api/product").then((res) => {
+      console.log(res);
+    });
+  };
   const handlesubmit = (e) => {
     alert("DD");
     axios.post("http://localhost:5000/api/product", product).then((res) => {
